@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3´20´´</title>
+    <meta name="description" content="3´20´´ — un jeu collaboratif pour jouer à communiquer à deux.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+
+    <!-- ===== Entrée PC ===== -->
+    <main class="home-desktop">
+        <p class="home-quote">On ne peut pas ne pas communiquer</p>
+
+        <div class="image-wrapper">
+            <img class="main-image" src="images/entree-pc.jpg" alt="Image d'entrée du site">
+
+            <a class="enter-button" href="jeu.html" aria-label="Entrer sur le site">
+                <img class="btn-img-1" src="images/bouton-1.svg" alt="">
+                <img class="btn-img-2" src="images/bouton-2.svg" alt="">
+            </a>
+        </div>
+
+        <a class="enter-hint" href="jeu.html">Cliquer pour entrer</a>
+    </main>
+
+    <!-- ===== Entrée smartphone ===== -->
+    <main class="home-mobile">
+        <div class="mobile-frame">
+            <img src="images/entree-mobile.jpg" alt="Image d'entrée du site">
+            <a class="mobile-enter" href="jeu.html"><img src="images/titre-vert.svg" alt="3´20´´ — entrer sur le site"></a>
+            <!-- Zone tactile qui couvre toute la balle, et invitation « Touchez la balle »
+                 centrée sur la hauteur du filet (cliquable elle aussi).
+                 Le titre reste le bouton accessible au clavier et aux lecteurs d'écran. -->
+            <a class="mobile-ball" href="jeu.html" tabindex="-1" aria-hidden="true"></a>
+            <a class="mobile-hint" href="jeu.html" tabindex="-1" aria-hidden="true">Touchez la balle</a>
+        </div>
+    </main>
+
+</body>
+</html>

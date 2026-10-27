@@ -1,0 +1,490 @@
+/* ==========================================================================
+   3'20'' — Feuille de style
+   Mot d'ordre : sobriété (angles droits, lignes fines, pas d'arrondis)
+   ========================================================================== */
+
+/* Variables globales */
+:root {
+    --bg-color: #1A3020;         /* Vert sapin foncé */
+    --text-color: #FFFFCC;       /* Jaune pâle */
+    --accent-color: #E6C645;     /* Jaune soutenu (survol / actif) */
+    --border-color: #3D5A42;     /* Vert moyen (bordures) */
+    --line-color: #5A8263;       /* Vert un peu plus clair (ligne sous le titre) */
+    --input-bg: #243D2B;         /* Fond des champs */
+    --home-bg: #DCEAF7;          /* Bleu pâle (entrée PC) */
+    --home-text: #000000;
+    --dark-green: #0F2416;       /* Vert très foncé (titre entrée smartphone) */
+    --font-main: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--accent-color); }
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main.container {
+    flex: 1;                 /* pousse le pied de page vers le bas */
+    padding-bottom: 40px;
+}
+
+/* ==========================================================================
+   EN-TÊTE : titre 3'20'' (toutes les pages sauf l'entrée)
+   ========================================================================== */
+.site-header { padding-top: 30px; }
+
+.site-title {
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--line-color);
+    text-align: center;
+    line-height: 0;
+}
+
+/* Titre « 3´20´´ » : image vectorielle (nette à toutes les tailles),
+   lien vers la page d'entrée */
+.site-title a { display: inline-block; }
+
+.site-title img {
+    height: 75px;            /* équivalent d'un corps 80 */
+    width: auto;
+}
+
+/* ==========================================================================
+   TYPOGRAPHIE
+   ========================================================================== */
+h2 {
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--accent-color);
+    margin: 35px 0 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+h3 {
+    font-size: 17px;
+    font-weight: normal;
+    color: var(--accent-color);
+    margin: 25px 0 10px;
+}
+
+p { margin: 0 0 18px; }
+
+/* Respiration dans un chapitre (ligne vide dans le texte d'origine) */
+p.suite { margin-top: 36px; }
+
+/* Listes (matériel, étapes du jeu) */
+ul, ol {
+    margin: 0 0 18px;
+    padding-left: 1.6em;
+}
+
+li { margin-bottom: 8px; }
+
+li::marker { color: var(--accent-color); }
+
+/* Phrase de conclusion, séparée par une fine ligne */
+.conclusion {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-style: italic;
+    text-align: center;
+}
+
+/* ==========================================================================
+   ONGLETS (100 % CSS : boutons radio cachés + étiquettes)
+   ========================================================================== */
+.tabs { margin: 30px 0 0; }
+
+/* Les boutons radio restent invisibles mais accessibles au clavier */
+.tabs > input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tabs-menu {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabs-menu label {
+    padding: 10px 20px;
+    margin-bottom: -1px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.tabs-menu label:hover { color: var(--accent-color); }
+
+/* Onglet actif */
+#tab-jeu:checked     ~ .tabs-menu label[for="tab-jeu"],
+#tab-regles:checked  ~ .tabs-menu label[for="tab-regles"],
+#tab-genese:checked  ~ .tabs-menu label[for="tab-genese"],
+#tab-contact:checked ~ .tabs-menu label[for="tab-contact"] {
+    border-color: var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Contour visible quand on navigue au clavier */
+#tab-jeu:focus-visible     ~ .tabs-menu label[for="tab-jeu"],
+#tab-regles:focus-visible  ~ .tabs-menu label[for="tab-regles"],
+#tab-genese:focus-visible  ~ .tabs-menu label[for="tab-genese"],
+#tab-contact:focus-visible ~ .tabs-menu label[for="tab-contact"] {
+    outline: 1px solid var(--accent-color);
+    outline-offset: -4px;
+}
+
+/* Contenus des onglets */
+.tab-panel {
+    display: none;
+    padding: 5px 25px 10px;
+    border: 1px solid var(--border-color);
+    border-top: none;
+}
+
+.tab-panel > h2:first-child { margin-top: 20px; }
+
+#tab-jeu:checked     ~ #panel-jeu,
+#tab-regles:checked  ~ #panel-regles,
+#tab-genese:checked  ~ #panel-genese,
+#tab-contact:checked ~ #panel-contact {
+    display: block;
+}
+
+/* ==========================================================================
+   FORMULAIRE DE CONTACT
+   ========================================================================== */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+.contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    color: var(--text-color);
+    padding: 10px;
+    font-family: var(--font-main);
+    font-size: 14px;
+}
+
+.contact-form textarea { min-height: 150px; resize: vertical; }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 1px solid var(--accent-color);
+}
+
+.btn-sobre {
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 0;
+    padding: 10px 24px;
+    font-family: var(--font-main);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-sobre:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* ==========================================================================
+   PIED DE PAGE (toutes les pages sauf l'entrée)
+   ========================================================================== */
+.site-footer {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 15px 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.site-footer::before {
+    /* fine ligne alignée sur la largeur du texte */
+    content: "";
+    flex-basis: 100%;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: 5px;
+}
+
+.site-footer p { margin: 0; }
+
+.site-footer a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.site-footer a:hover { color: var(--accent-color); }
+
+/* ==========================================================================
+   PAGE D'ENTRÉE (index.html)
+   ========================================================================== */
+body.home-page {
+    background-color: var(--home-bg);
+    color: var(--home-text);
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Version PC --- */
+.home-desktop { padding: 30px 20px; }
+
+.home-quote {
+    margin: 0 0 8px;
+    font-size: 20px;
+    text-align: right;
+}
+
+.image-wrapper { position: relative; }
+
+.main-image {
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;        /* l'image tient dans l'écran */
+}
+
+/* Bouton d'entrée au centre de l'image
+   (ajuster top/left si le centre visuel de l'image est décalé) */
+.enter-button {
+    position: absolute;
+    top: 48.6%;              /* texte centré verticalement entre le bas du filet et la ligne de service 48 c'est trop haut, 49 c'est un poil trop bas */
+    left: 50.8%;             /* la ligne blanche centrale du court passe entre le ´ et le 2 */
+    width: 37.25%;           /* ≈ 2,5 x la taille d'origine : le texte occupe ~75 % de l'espace disponible */
+    transform: translate(-50%, -50%);
+}
+
+.enter-button img { width: 100%; }
+
+/* Fondu enchaîné automatique entre les deux teintes */
+.enter-button .btn-img-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: fondu 6s ease-in-out infinite;
+}
+
+@keyframes fondu {
+    0%, 35%  { opacity: 0; }
+    50%, 85% { opacity: 1; }
+    100%     { opacity: 0; }
+}
+
+.enter-button:focus-visible { outline: 1px solid var(--home-text); }
+
+.enter-hint {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--home-text);
+    text-decoration: none;
+}
+
+.enter-hint:hover { text-decoration: underline; }
+
+/* --- Version smartphone (cachée sur PC) --- */
+.home-mobile { display: none; }
+
+/* ==========================================================================
+   SMARTPHONE
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Entrée : l'image remplit tout l'écran, le titre sert de bouton */
+    .home-desktop { display: none; }
+
+    /* v6.1 — Même référence de hauteur que .home-mobile (100dvh = hauteur
+       réellement visible). Avant, le body (100vh, plus haut que l'écran quand
+       la barre d'adresse est affichée) décalait l'image vers le bas. */
+    body.home-page {
+        min-height: 100vh;       /* repli pour les anciens navigateurs */
+        min-height: 100dvh;
+        overflow: hidden;        /* aucun défilement sur la page d'entrée */
+    }
+
+    /* L'image est toujours affichée en entier (les phrases en haut et en bas
+       ne sont jamais coupées). Si l'écran n'a pas exactement ses proportions,
+       une version floutée de la même image comble les bords. */
+    .home-mobile {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .home-mobile::before {
+        content: "";
+        position: absolute;
+        inset: -30px;
+        background: url('images/entree-mobile.jpg') center / cover no-repeat;
+        filter: blur(20px);
+    }
+
+    /* Cadre aux proportions exactes de l'image (580 x 1228) */
+    .mobile-frame {
+        position: relative;
+        width: min(100vw, 100dvh * 580 / 1228);
+        aspect-ratio: 580 / 1228;
+        container-type: inline-size;
+
+        /* v6.1 — Position de la balle, en % de l'image 580 x 1228 :
+           centre horizontal, centre vertical, diamètre de la zone tactile.
+           Le diamètre est volontairement plus grand que la balle. */
+        --balle-x: 50.5%;
+        --balle-y: 50%;
+        --balle-d: 16%;
+
+        /* Hauteur du filet (en % de la hauteur de l'image) :
+           la phrase « Touchez la balle » est centrée sur cette ligne */
+        --filet-y: 57%;
+    }
+
+    .mobile-frame img { width: 100%; height: 100%; }
+
+    /* Bouton « 3´20´´ » : dans le ciel, posé juste au-dessus de l'horizon
+       (positions en % de l'image 580 x 1228, selon la maquette) */
+    .mobile-enter {
+        position: absolute;
+        top: 41.65%;
+        left: 22.3%;
+        width: 71.4%;
+        display: block;
+    }
+
+    .mobile-enter img { width: 100%; }
+
+    .mobile-enter:focus-visible { outline: 1px solid var(--dark-green); }
+
+    /* v6.1 — Zone tactile qui englobe toute la balle */
+    .mobile-ball {
+        position: absolute;
+        left: var(--balle-x);
+        top: var(--balle-y);
+        width: var(--balle-d);
+        aspect-ratio: 1;
+        transform: translate(-50%, -50%);
+        display: block;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        /* Pour régler la position, décommenter la ligne suivante : */
+        /* outline: 1px dashed red; */
+    }
+
+    /* v6.1 — Invitation « Touchez la balle », en blanc, centrée sur la
+       hauteur du filet et alignée sur la balle. Elle apparaît en fondu
+       presque tout de suite. Taille en cqi (% de la largeur de l'image) :
+       le texte suit la taille de l'image. */
+    .mobile-hint {
+        position: absolute;
+        left: var(--balle-x);
+        top: var(--filet-y);
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        font-size: 5.1cqi; /* taille de "Touchez la balle ? */
+        letter-spacing: 0.08em;
+        color: #FFFFFF;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        opacity: 0;
+        animation: apparition 2s ease-out 1s forwards;
+    }
+
+    @keyframes apparition {
+        to { opacity: 1; }
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* Densification : pas de cadre autour du contenu, marges réduites */
+    .container { padding: 0 16px; }
+    .site-header { padding-top: 18px; }
+    .site-title { padding-bottom: 10px; }
+    .site-title img { height: 48px; }
+
+    .tabs { margin-top: 18px; }
+    /* Onglets : même rendu que sur PC, sur une seule ligne */
+    .tabs-menu label {
+        flex: 1 1 auto;
+        padding: 8px 4px;
+        font-size: 13px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .tab-panel {
+        padding: 4px 0 0;
+        border: none;
+    }
+
+    .tab-panel > h2:first-child { margin-top: 18px; }
+    h2 { font-size: 19px; margin: 26px 0 10px; }
+    p, li { line-height: 1.5; }
+    p { margin-bottom: 14px; }
+    ul, ol { padding-left: 1.3em; }
+    li { margin-bottom: 6px; }
+    p.suite { margin-top: 26px; }
+    .conclusion { margin-top: 26px; padding-top: 14px; }
+
+    main.container { padding-bottom: 24px; }
+    .site-footer { padding: 10px 16px 18px; }
+}
+
+/* Pas d'animation pour qui l'a désactivée dans son système */
+@media (prefers-reduced-motion: reduce) {
+    .enter-button .btn-img-2 { animation: none; }
+    .mobile-hint { animation: none; opacity: 1; }
+}
