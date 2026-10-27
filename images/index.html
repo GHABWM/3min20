@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3´20´´ (3 minutes 20) — jeu de communication gratuit pour couples</title>
+    <meta name="description" content="On ne peut pas ne pas communiquer. 3´20´´ est un jeu collaboratif gratuit pour les couples : une balle de tennis, un café et 3 minutes 20 de silence partagé.">
+    <link rel="canonical" href="https://3min20.be/">
+    <meta name="author" content="Anton Black">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <!-- Aperçu lors d'un partage (WhatsApp, Facebook, Messenger…) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:site_name" content="3´20´´">
+    <meta property="og:title" content="3´20´´ — jeu de communication gratuit pour couples">
+    <meta property="og:description" content="Ceci n'est pas un match. On ne peut pas ne pas communiquer.">
+    <meta property="og:url" content="https://3min20.be/">
+    <meta property="og:image" content="https://3min20.be/images/partage.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+
+    <!-- ===== Entrée PC ===== -->
+    <main class="home-desktop">
+        <p class="home-quote">On ne peut pas ne pas communiquer</p>
+
+        <div class="image-wrapper">
+            <img class="main-image" src="images/entree-pc.jpg" alt="Un court de tennis en gazon, une balle de tennis géante posée sur l'horizon et une cafetière chromée géante. En bas, l'inscription : Ceci n'est pas un match.">
+
+            <a class="enter-button" href="jeu.html" aria-label="Entrer sur le site">
+                <img class="btn-img-1" src="images/bouton-1.svg" alt="">
+                <img class="btn-img-2" src="images/bouton-2.svg" alt="">
+            </a>
+        </div>
+
+        <a class="enter-hint" href="jeu.html">Cliquer pour entrer</a>
+    </main>
+
+    <!-- ===== Entrée smartphone ===== -->
+    <main class="home-mobile">
+        <div class="mobile-frame">
+            <img src="images/entree-mobile.jpg" alt="Un court de tennis en gazon, une balle de tennis géante et une cafetière chromée géante : entrée du jeu 3´20´´.">
+            <a class="mobile-enter" href="jeu.html"><img src="images/titre-vert.svg" alt="3´20´´ — entrer sur le site"></a>
+            <!-- Zone tactile qui couvre toute la balle, et invitation « Touchez la balle »
+                 centrée sur la hauteur du filet (cliquable elle aussi).
+                 Le titre reste le bouton accessible au clavier et aux lecteurs d'écran. -->
+            <a class="mobile-ball" href="jeu.html" tabindex="-1" aria-hidden="true"></a>
+            <a class="mobile-hint" href="jeu.html" tabindex="-1" aria-hidden="true">Touchez la balle</a>
+        </div>
+    </main>
+
+</body>
+</html>
